@@ -1,0 +1,27 @@
+
+#msg-form {
+    width: 100%;
+    height: 50px;
+
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+
+
+    input {
+        background-color: rgb(212, 212, 212);
+        padding: 0 10px;
+        outline: none;
+        font-size: 1.2rem;
+        border: none;
+    }
+
+    button {
+        background-color: #148C5A;
+        color: white;
+        border: none;
+
+        svg {
+            background-color: #148C5A;
+        }
+    }
+}
