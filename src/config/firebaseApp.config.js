@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-    apiKey: "AIzaSyAOkph-LRvojWKM0ybwUJD0lBRgdq0tVVg",
-    authDomain: "daily-planner-25b9d.firebaseapp.com",
-    projectId: "daily-planner-25b9d",
-    storageBucket: "daily-planner-25b9d.appspot.com",
-    messagingSenderId: "343350532490",
-    appId: "1:343350532490:web:7cd4286ccaa1418360d073"
+    apiKey: "AIzaSyBUU_5E45Acb2c7LYsGDyjzOq1Bb6shpPc",
+    authDomain: "discussion---chat-app.firebaseapp.com",
+    projectId: "discussion---chat-app",
+    storageBucket: "discussion---chat-app.appspot.com",
+    messagingSenderId: "199853289861",
+    appId: "1:199853289861:web:926268d3e4c459b9b754ec"
 };

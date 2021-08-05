@@ -1,16 +1,12 @@
-import Loading from './components/Loading';
-
-import Main from './pages/main';
-import Login from './pages/login';
-
-import './App.scss';
-
-// ###
-
-import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom';
+import Loading from './components/Loading'
+import Main from './pages/main'
+import Login from './pages/login'
+import Tos from './pages/tos'
+import Privacy from './pages/privacy'
+import './App.scss'
+import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from './app/firebaseApp'
-// ###
 
 
 function App() {
@@ -20,7 +16,7 @@ function App() {
     <Router>
       <Switch>
         <Route
-          path="/" component={Main}
+          path="/"
           exact
         >
           {
@@ -40,6 +36,8 @@ function App() {
             user ? <Redirect to="/" /> : <Login />
           }
         </Route>
+        <Route path="/tos" component={Tos} />
+        <Route path="/privacy" component={Privacy} />
       </Switch>
     </Router>
   );

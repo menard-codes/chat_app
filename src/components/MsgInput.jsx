@@ -1,19 +1,11 @@
 import React, { useState } from 'react'
 import './MsgInput.scss'
-
-// ###
 import { connect } from 'react-redux'
 import { sendMessage } from '../redux/actions'
-
 import { firebase, auth } from '../app/firebaseApp'
 import { useAuthState } from 'react-firebase-hooks/auth'
-// ###
-
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-
-
 
 
 function MsgInput({ sendMessage }) {
@@ -22,14 +14,16 @@ function MsgInput({ sendMessage }) {
 
     const handleSubmit = e => {
         e.preventDefault()
-        const mockMsg = {
-            displayName: user.displayName,
-            msg: input,
-            senderId: user.uid,
-            timeSent: firebase.firestore.FieldValue.serverTimestamp()
+        if (input.length >= 1) {
+            const mockMsg = {
+                displayName: user.displayName,
+                msg: input,
+                senderId: user.uid,
+                timeSent: firebase.firestore.FieldValue.serverTimestamp()
+            }
+            sendMessage(mockMsg)
+            setInput('')
         }
-        sendMessage(mockMsg)
-        setInput('')
     }
 
     return (

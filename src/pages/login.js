@@ -2,10 +2,8 @@ import { auth, firebase } from '../app/firebaseApp';
 import { uiconfig } from '../config/firebaseAuth.config';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { useAuthState } from 'react-firebase-hooks/auth'
-
 import Logo from '../components/Logo';
 import Loading from '../components/Loading';
-
 import './login.scss'
 
 

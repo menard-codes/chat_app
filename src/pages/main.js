@@ -4,10 +4,8 @@ import Message from '../components/Message'
 import MsgInput from '../components/MsgInput'
 import Loading from '../components/Loading'
 import Sending from '../components/Sending'
-
 import { connect } from 'react-redux'
 import { fetchMessages } from '../redux/actions'
-
 import { auth } from '../app/firebaseApp'
 
 
@@ -65,6 +63,8 @@ function Main({ msgs, isLoading, isSending, getMsgs }) {
     </main>
   )
 }
+
+
 const mapStateToProps = state => ({
   msgs: state.msgs,
   isLoading: state.loading,

@@ -49,9 +49,15 @@ export const msgsReducer = (state=initialState, { type, payload }) => {
                 error: payload
             }
         case SUCCESS_SENDING_MSG:
+            let newMsgs;
+            if (state.msgs.length >= 15) {
+                newMsgs = [...state.msgs.slice(1), payload]
+            } else {
+                newMsgs = [...state.msgs,payload]
+            }
             return {
                 ...state,
-                msgs: [...state.msgs.slice(1), payload],
+                msgs: newMsgs,
                 sendingMsg: false,
                 error: ''
             }

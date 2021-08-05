@@ -34,10 +34,6 @@ export const successSending = msg => ({
 })
 
 
-// async actions (MOCK DATA)
-// 1.) get messages (directly through firestore)
-// 2.) send messages (via API)
-
 export const fetchMessages = () => dispatch => {
     dispatch(fetchingMessages())
 
@@ -52,9 +48,6 @@ export const fetchMessages = () => dispatch => {
 export const sendMessage = msg => dispatch => {
     dispatch(sendingMessage())
 
-    // NOTE: JUST A MOCK FOR NOW
-    // post to api
-    // on resolve, dispatch either error or success
     const msgsRef = firestore.collection('Messages')
 
     msgsRef.add(msg).then(docRef => {
@@ -69,25 +62,3 @@ export const sendMessage = msg => dispatch => {
     }).catch(e => dispatch(errorSending(e)))
 }
 
-/*
-TODO:
-    I. Set Up Firebase
-    (No auth yet)
-        Firestore:
-            1. Firebase App
-            2. Firebase Config
-            3. connect this app to firebase with the redux action
-                -dispatch fetching messages
-                -on resolve
-                    -dispatch either success or error
-    II. Set Up API (via firebase admin, and save as netlify functions)
-        (No Auth Yet)
-        1. Check for profanity
-        2. Will save or not to firestore depending on filter
-
-        (Redux)
-        1. dispatch sendMessage
-        2. axios.post (connect to the API)
-        3. on resolve
-            -dispatch either error or success
-*/

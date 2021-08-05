@@ -1,5 +1,7 @@
 import { css } from "@emotion/react";
 import { BeatLoader } from "react-spinners";
+import './Sending.scss'
+
 
 // Can be a string as well. Need to ensure each key-value pair ends with ;
 const override = css`
@@ -10,7 +12,7 @@ const override = css`
 
 function Sending({ isLoading }) {
   return (
-    <div style={{width: '100%', display: 'flex', justifyContent: 'flex-end'}}>
+    <div id="sending-container">
         <div>
             <BeatLoader color='#36d7b7' loading={isLoading} css={override} size={15} />
         </div>

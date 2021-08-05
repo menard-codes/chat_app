@@ -10,7 +10,7 @@ const override = css`
 
 function Loading({isLoading }) {
   return (
-    <div className="sweet-loading">
+    <div>
       <CircleLoader color='#36d7b7' loading={isLoading} css={override} size={50} />
     </div>
   );
