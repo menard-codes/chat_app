@@ -5,20 +5,33 @@
 
     display: grid;
     grid-template-columns: 6fr 1fr;
+    height: 100%;
 
 
     input {
-        background-color: rgb(212, 212, 212);
+        background-color: rgb(175, 175, 175);
         padding: 0 10px;
         outline: none;
         font-size: 1.2rem;
         border: none;
+        resize: none;
+        
+        &:focus {
+            background-color: rgb(207, 207, 207);
+        }
+
+        @media (min-width: 720px) {
+            &:hover {
+                background-color: rgb(207, 207, 207);
+            }
+        }
     }
 
     button {
         background-color: #148C5A;
         color: white;
         border: none;
+        cursor: pointer;
 
         svg {
             background-color: #148C5A;

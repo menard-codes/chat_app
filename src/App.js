@@ -1,47 +1,46 @@
-import Logo from './components/Logo';
-import Message from './components/Message';
-import MsgInput from './components/MsgInput';
+
+import Main from './pages/main';
+import Login from './pages/login';
 
 import './App.scss';
 
+// ###
+
+import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from './app/firebaseApp'
+// ###
+
 
 function App() {
+  const [user, loading, error] = useAuthState(auth);
+
   return (
-    <main id="container">
-
-      <div id="banner">
-        <Logo />
-      </div>
-
-      <div id="thread-container">
-        <ul>
-          <li><Message isOwn={true} msg="dsjfnsdjk nsdn dsjkf" /></li>
-          <li>
-            <Message isOwn={false} msg="hello world" />
-          </li>
-          <li><Message isOwn={true} msg="aa snd dlsand sdndsfnsdnf sdfsdfnsldfsdl" /></li>
-          <li><Message isOwn={false} msg="hello world" /></li>
-          <li><Message isOwn={true} msg="sa dasd as d" /></li>
-          <li><Message isOwn={true} msg="sa dasd" /></li>
-          <li><Message isOwn={true} msg="aa snd dlsand sdndsfnsdnf sdfsdfnsldfsdl" /></li>
-          <li><Message isOwn={false} msg="hello world" /></li>
-          <li><Message isOwn={true} msg="sa dasd as d" /></li>
-          <li><Message isOwn={true} msg="sa dasd" /></li>
-          <li><Message isOwn={false} msg="aa snd dlsand sdndsfnsdnf sdfsdfnsldfsdl" /></li>
-          <li><Message isOwn={false} msg="hello world" /></li>
-          <li><Message isOwn={true} msg="sa dasd as d" /></li>
-          <li><Message isOwn={true} msg="sa dasd" /></li>
-          <li><Message isOwn={true} msg="aa snd dlsand sdndsfnsdnf sdfsdfnsldfsdl" /></li>
-          <li><Message isOwn={false} msg="hello world" /></li>
-          <li><Message isOwn={true} msg="sa dasd as d" /></li>
-          <li><Message isOwn={true} msg="sa dasd" /></li>
-        </ul>
-      </div>
-
-      <div id="msg-input-container">
-        <MsgInput />
-      </div>
-    </main>
+    <Router>
+      <Switch>
+        <Route
+          path="/" component={Main}
+          exact
+        >
+          {
+            loading
+              ? <div style={{width: '100%', height: '100vh', backgroundColor: 'white', display: 'grid', placeItems: 'center'}}>
+                  <h1>Loading...</h1>
+                </div>
+              : user
+                ? <Main />
+                : error
+                  ? <h1>Error: {error}</h1>
+                  : <Redirect to="/login" />
+          }
+        </Route>
+        <Route path="/login">
+          {
+            user ? <Redirect to="/" /> : <Login />
+          }
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
