@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import Logo from '../components/Logo'
 import Message from '../components/Message'
 import MsgInput from '../components/MsgInput'
+import Loading from '../components/Loading'
 
 import { connect } from 'react-redux'
 import { fetchMessages } from '../redux/actions'
@@ -16,7 +17,6 @@ function Main({ msgs, isLoading, getMsgs }) {
 
   return (
       <main id="container">
-
       <div id="banner">
         <Logo />
         <button onClick={() => auth.signOut()}>Sign Out</button>
@@ -26,7 +26,7 @@ function Main({ msgs, isLoading, getMsgs }) {
         {
           isLoading && 
           <div style={{width: '100%', height: '100%', display: 'grid', placeItems: 'center'}}>
-            <h1>Loading...</h1>
+            <Loading isLoading={isLoading} />
           </div>
         }
         <ul>
@@ -49,12 +49,11 @@ function Main({ msgs, isLoading, getMsgs }) {
   )
 }
 const mapStateToProps = state => ({
-    msgs: state.msgs,
-    isLoading: state.loading
-  })
-  const mapDispatchToProps = dispatch => ({
-    getMsgs: () => dispatch(fetchMessages())
-  })
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(Main);
-  
+  msgs: state.msgs,
+  isLoading: state.loading
+})
+const mapDispatchToProps = dispatch => ({
+  getMsgs: () => dispatch(fetchMessages())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

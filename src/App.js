@@ -1,3 +1,4 @@
+import Loading from './components/Loading';
 
 import Main from './pages/main';
 import Login from './pages/login';
@@ -25,7 +26,7 @@ function App() {
           {
             loading
               ? <div style={{width: '100%', height: '100vh', backgroundColor: 'white', display: 'grid', placeItems: 'center'}}>
-                  <h1>Loading...</h1>
+                  <Loading isLoading={loading} />
                 </div>
               : user
                 ? <Main />
