@@ -42,9 +42,9 @@ export const fetchMessages = () => dispatch => {
     dispatch(fetchingMessages())
 
     const msgsRef = firestore.collection('Messages')
-    const query = msgsRef.orderBy("timeSent", "asc").limit(15)
+    const query = msgsRef.orderBy("timeSent", "desc").limit(15)
     query.get().then(querySnapshot => {
-        const msgsData = querySnapshot.docs.map(doc => doc.data())
+        const msgsData = querySnapshot.docs.map(doc => doc.data()).reverse()
         dispatch(successFetching(msgsData))
     }).catch((e) => console.log(`Custome error log: ${e}`))
 }

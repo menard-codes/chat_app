@@ -51,7 +51,7 @@ export const msgsReducer = (state=initialState, { type, payload }) => {
         case SUCCESS_SENDING_MSG:
             return {
                 ...state,
-                msgs: [...state.msgs.slice(0, 14), payload],
+                msgs: [...state.msgs.slice(1), payload],
                 sendingMsg: false,
                 error: ''
             }

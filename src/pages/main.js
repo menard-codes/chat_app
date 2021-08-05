@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Logo from '../components/Logo'
 import Message from '../components/Message'
 import MsgInput from '../components/MsgInput'
 import Loading from '../components/Loading'
+import Sending from '../components/Sending'
 
 import { connect } from 'react-redux'
 import { fetchMessages } from '../redux/actions'
@@ -10,10 +11,24 @@ import { fetchMessages } from '../redux/actions'
 import { auth } from '../app/firebaseApp'
 
 
-function Main({ msgs, isLoading, getMsgs }) {
+function Main({ msgs, isLoading, isSending, getMsgs }) {
+  const bottomRef = useRef();
+  const scrollToBottom = () => {
+    bottomRef.current.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+    });
+  };
+
   useEffect(() => {
-      getMsgs()
-    }, [])
+    getMsgs()
+    scrollToBottom()
+  }, [])
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [msgs, isSending])
+
 
   return (
       <main id="container">
@@ -40,6 +55,8 @@ function Main({ msgs, isLoading, getMsgs }) {
             })
           }
         </ul>
+        <Sending isLoading={isSending} />
+        <div ref={bottomRef} className="list-bottom"></div>
       </div>
 
       <div id="msg-input-container">
@@ -50,7 +67,8 @@ function Main({ msgs, isLoading, getMsgs }) {
 }
 const mapStateToProps = state => ({
   msgs: state.msgs,
-  isLoading: state.loading
+  isLoading: state.loading,
+  isSending: state.sendingMsg
 })
 const mapDispatchToProps = dispatch => ({
   getMsgs: () => dispatch(fetchMessages())
