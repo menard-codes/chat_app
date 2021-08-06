@@ -31,9 +31,9 @@ function MsgInput({ sendMessage }) {
             <input
                 value={input}
                 onChange={e => setInput(e.target.value)}
-                placeholder="Type message..."
+                placeholder="Write your message..."
             />
-            <button>
+            <button disabled={input.length > 0} id={input.length === 0 ? "disabled-send" : ""}>
                 <FontAwesomeIcon icon={faPaperPlane} />
             </button>
         </form>

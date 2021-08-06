@@ -37,4 +37,12 @@
             background-color: #148C5A;
         }
     }
+    
+    #disabled-send {
+        cursor: not-allowed;
+        background-color: #73a18e;
+        svg {
+            background-color: #73a18e;
+        }
+    }
 }
