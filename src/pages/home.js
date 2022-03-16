@@ -8,6 +8,8 @@ export default function Home() {
 			</div>
 			<div id="test-div-2">
 			</div>
+			<div id="test-div-3">
+			</div>
 		</>
 	)
 }
